@@ -23,7 +23,8 @@ func castArray(in interface{}) ([]interface{}, bool) {
 func recursivelyUnflattenArray(in []interface{}, opts *Options) ([]interface{}, error) {
 	out := make([]interface{}, len(in))
 
-	err := errors.New("")
+	// we need this dummy value for lines 31and 39 :/
+	var err error
 	for key, value := range in {
 		if object, ok := castObject(value); ok {
 
