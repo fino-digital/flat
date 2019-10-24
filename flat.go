@@ -23,7 +23,7 @@ func castArray(in interface{}) ([]interface{}, bool) {
 func recursivelyUnflattenArray(in []interface{}, opts *Options) ([]interface{}, error) {
 	out := make([]interface{}, len(in))
 
-	// we need this dummy value for lines 31 and 39 :/
+	// we need this dummy value for the indexed map assignment :/
 	var err error
 
 	// check whether some fields need to be recursed (type of array or "object")
