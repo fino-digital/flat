@@ -23,7 +23,7 @@ func castArray(in interface{}) ([]interface{}, bool) {
 func recursivelyUnflattenArray(in []interface{}, opts *Options) ([]interface{}, error) {
 	out := make([]interface{}, len(in))
 
-	// we need this dummy value for lines 31and 39:/
+	// we need this dummy value for lines 31 and 39 :/
 	var err error
 
 	// check whether some fields need to be recursed (type of array or "object")
@@ -38,6 +38,7 @@ func recursivelyUnflattenArray(in []interface{}, opts *Options) ([]interface{}, 
 
 			continue
 		}
+
 		if array, ok := castArray(value); ok {
 			out[key], err = recursivelyUnflattenArray(array, opts)
 			if err != nil {
@@ -47,6 +48,7 @@ func recursivelyUnflattenArray(in []interface{}, opts *Options) ([]interface{}, 
 			continue
 
 		}
+
 		out[key] = value
 	}
 
