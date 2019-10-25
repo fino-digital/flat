@@ -7,9 +7,9 @@ import (
 
 func TestUnflatten(t *testing.T) {
 	tests := []struct {
-		flat    map[string]interface{}
+		flat    interface{}
 		options *Options
-		want    map[string]interface{}
+		want    interface{}
 	}{
 		{
 			map[string]interface{}{"hello": "world"},
@@ -138,6 +138,24 @@ func TestUnflatten(t *testing.T) {
 					map[string]interface{}{
 						"woop": map[string]interface{}{
 							"party": "rainbows!",
+						},
+					},
+				},
+			},
+		},
+		// arrays as initial input
+		{
+			[]interface{}{
+				map[string]interface{}{
+					"foo.bar": map[string]interface{}{"t": 123},
+				},
+			},
+			nil,
+			[]interface{}{
+				map[string]interface{}{
+					"foo": map[string]interface{}{
+						"bar": map[string]interface{}{
+							"t": 123,
 						},
 					},
 				},

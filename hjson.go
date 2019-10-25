@@ -105,14 +105,21 @@ type Options struct {
 
 // Unflatten the map, it returns a nested map of a map
 // By default, the flatten has Delimiter = "."
-func Unflatten(flat map[string]interface{}, opts *Options) (nested map[string]interface{}, err error) {
+func Unflatten(flat interface{}, opts *Options) (nested interface{}, err error) {
 	if opts == nil {
 		opts = &Options{
 			Delimiter: ".",
 		}
 	}
-	nested, err = recursivelyUnflattenObject(flat, opts)
-	return
+
+	if casted, ok := castArray(flat); ok {
+		return recursivelyUnflattenArray(casted, opts)
+	}
+	if casted, ok := castObject(flat); ok {
+		return recursivelyUnflattenObject(casted, opts)
+	}
+
+	return nil, errors.New("only arrays and objects are supported")
 }
 
 func unflatten(flat map[string]interface{}, opts *Options) (nested map[string]interface{}, err error) {
