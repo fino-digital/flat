@@ -32,4 +32,4 @@
 //     //     },
 //     // }
 //
-package flat
+package hjson
