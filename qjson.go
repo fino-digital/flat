@@ -1,4 +1,4 @@
-package hjson
+package qjson
 
 import (
 	"errors"

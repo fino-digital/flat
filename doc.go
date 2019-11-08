@@ -32,4 +32,4 @@
 //     //     },
 //     // }
 //
-package hjson
+package qjson

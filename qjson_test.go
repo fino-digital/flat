@@ -1,6 +1,7 @@
-package hjson
+package qjson
 
 import (
+	"io/ioutil"
 	"reflect"
 	"testing"
 )
@@ -170,5 +171,22 @@ func TestUnflatten(t *testing.T) {
 		if !reflect.DeepEqual(got, test.want) {
 			t.Errorf("%d: mismatch, got: %v want: %v", i+1, got, test.want)
 		}
+	}
+}
+
+func TestUnmarshal(t *testing.T) {
+	data, err := ioutil.ReadFile("test.qjson")
+	if err != nil {
+		t.Error(err)
+	}
+
+	unflattened, err := Unmarshal(data)
+	if err != nil {
+		t.Error(err)
+	}
+
+	_, ok := unflattened.(map[string]interface{})
+	if !ok {
+		t.Error("couldn't cast to a map")
 	}
 }

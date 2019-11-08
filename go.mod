@@ -1,4 +1,4 @@
-module github.com/fino-digital/hjson
+module github.com/fino-digital/qjson
 
 go 1.13
 
